@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+
+  testdb:
+    container_name: testdb
+    image: postgis/postgis:13-3.3-alpine
+    environment:
+      POSTGRES_HOST: testdb
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: test
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+    command: [ "postgres", "-c", "log_statement=all" ]
+
+  testcontainer:
+    container_name: testcontainer
+    build:
+      context: test
+      dockerfile: Dockerfile
